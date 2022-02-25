@@ -1,7 +1,7 @@
 import socket
 msgFromClient       = "Hello From Amrit"
 bytesToSend         = str.encode(msgFromClient)
-serverAddressPort   = ("127.0.0.1", 13000)
+serverAddressPort   = ("127.0.0.1", 1234)
 bufferSize          = 1024
 # Create a UDP socket at client side
 UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
