@@ -60,6 +60,24 @@ namespace Logging_Server
 
         internal static void Worker(Object o)
         {
+            TcpClient client = (TcpClient)o;
+            // Buffer for reading data
+            Byte[] bytes = new Byte[256];
+            string clientMessage = null;
+
+            // Get a stream object for reading and writing
+            NetworkStream stream = client.GetStream();
+
+            int readData = 0;
+
+            while ((readData = stream.Read(bytes, 0, bytes.Length)) != 0)
+            {
+                // Translate data bytes to a ASCII string.
+                clientMessage = System.Text.Encoding.ASCII.GetString(bytes, 0, readData);
+
+                //response message to let the client know we got your message
+                string response = "SUCCESS!!!";
+            }
         }
     }
 }
