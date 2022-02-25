@@ -75,23 +75,27 @@ try:
 
     logLevel = 0
 
+    print("Log Levels:\n", "0. OFF\n", "1. FATAL\n", "2. ERROR\n", "3. WARN\n", "4. INFO\n", "5. DEBUG\n", "6. TRACE\n")
+
     # loop until user choose to
     while(logLevel != -1):
-
-        print("Log Levels:\n", "0. OFF\n", "1. FATAL\n", "2. ERROR\n", "3. WARN\n", "4. INFO\n", "5. DEBUG\n", "6. TRACE\n")
 
 
         # ask logging level from client
         logLevel = 0
         logLevel = input("Choose your log Level[0-6] or -1 to exit: ")
-        logLevel = int(logLevel)
+        try:
+            logLevel = int(logLevel)
+        except:
+            print("Error: Enter a integer value")
 
         if (logLevel == -1):
             break
 
-        if(logLevel < 0 and logLevel >6):
+        if (logLevel < 0 or logLevel > 6):
             print("Error: Please enter your log level within given Range only")
             continue
+
 
         logLevel = str(logLevel)
 

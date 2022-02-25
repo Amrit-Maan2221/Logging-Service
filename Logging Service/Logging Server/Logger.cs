@@ -84,26 +84,25 @@ namespace Logging_Server
             TcpClient client = (TcpClient)o;
             // Buffer for reading data
             Byte[] bytes = new Byte[256];
-            string clientMessage = null;
             
             // Get a stream object for reading and writing
             NetworkStream stream = client.GetStream();
 
             //we can get the ip address too.........
-            string str = client.Client.RemoteEndPoint.ToString();
+            string clientIPAddress = client.Client.RemoteEndPoint.ToString();
 
             int readData = 0;
 
             while ((readData = stream.Read(bytes, 0, bytes.Length)) != 0)
             {
                 // Translate data bytes to a ASCII string.
-                clientMessage = System.Text.Encoding.ASCII.GetString(bytes, 0, readData);
+                string clientMessage = System.Text.Encoding.ASCII.GetString(bytes, 0, readData);
 
                 //response message to let the client know we got your message
                 string response = "SUCCESS!!!";
 
                 // parsing client message to get formatted log message
-                string logMessage = ParseClientMessage(clientMessage);
+                string logMessage = ParseClientMessage(clientMessage, clientIPAddress);
 
                 if (!(logMessage == "Error: Invalid Log Format"))
                 {
@@ -125,10 +124,11 @@ namespace Logging_Server
         /*
         * FUNCTION     :   ParseClientMessage
         * DESCRIPTION  :   function to parse Client messages
-        * PARAMETERS   :   string message
+        * PARAMETERS   :   string message-> Msg recieved from client and its level
+        *                   IP address of Client
         * RETURNS      :   message
         */
-        static string ParseClientMessage(string message)
+        static string ParseClientMessage(string message, string clientIPAddress)
         {
             // Declarations
             int logLevel = 0;
@@ -149,9 +149,13 @@ namespace Logging_Server
             //Getting the log level in String to parse
             ParseLogLevel(logLevel, ref logLevelStr);
 
+            var parseClientIPAdressAndPort = clientIPAddress.Split(':');
+
             //Time-stamp parsing
             string timeStamp = DateTime.Now.ToString("MMM dd HH:mm:ss");
-            return $"{timeStamp} [{logLevelStr}]: {msgInfo}";
+
+            //our log format is date time clientIpAddress Loglevel: Message
+            return $"{timeStamp} {parseClientIPAdressAndPort[0]} [{logLevelStr}]: {msgInfo}";
         }
 
 
