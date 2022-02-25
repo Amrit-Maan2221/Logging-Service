@@ -28,7 +28,7 @@ namespace Logging_Server
             TcpListener loggingServer = null;
             try
             {
-                //later will get these value from App.config
+                //later will get these value from App.config...todo
                 Int32 serverPort = Convert.ToInt32("9001");
                 IPAddress serverIPAddress = IPAddress.Parse("127.0.0.1");
                 loggingServer = new TcpListener(serverIPAddress, serverPort);
@@ -45,6 +45,7 @@ namespace Logging_Server
                     //Thread clientThread = new Thread(ts);
                     //clientThread.Start(client);
                     Worker(client);
+                    break;
                 }
             }
             catch (Exception e)
@@ -68,9 +69,12 @@ namespace Logging_Server
             // Buffer for reading data
             Byte[] bytes = new Byte[256];
             string clientMessage = null;
-
+            
             // Get a stream object for reading and writing
             NetworkStream stream = client.GetStream();
+
+            //we can get the ip address too.........
+            //string str = client.Client.RemoteEndPoint.ToString();
 
             int readData = 0;
 
@@ -87,7 +91,7 @@ namespace Logging_Server
 
                 if (!(logMessage == "Error: Invalid Log Format"))
                 {
-                    //GenerateLogFile(logMessage);
+                    GenerateLogFile(logMessage);
                 }
 
                 byte[] responseMessage = System.Text.Encoding.ASCII.GetBytes(response);
@@ -160,6 +164,82 @@ namespace Logging_Server
             else
             {
                 logLevelStr = "";
+            }
+        }
+
+
+
+        /*
+         * Function Name: GenerateLogFile
+         * Parameters: string stringToWrite --> The String that we want to write into the file
+         * Description: This function appends the log messages to the file
+         * Returns: void
+         *  References:
+            * TITLE : How to lock a text file for reading and writing using C#
+            * AUTHOR : Dimitrios Kalemis
+            * DATE : June 23, 2013 
+            * AVAILABIILTY : https://dkalemis.wordpress.com/2013/06/23/how-to-lock-a-text-file-for-reading-and-writing-using-csharp/
+         */
+        public static void GenerateLogFile(string stringToWrite)
+        {
+
+            FileStream myFileStream = null;
+
+            try
+            {
+                // continue loop until file is not in use anymore
+                while (true)
+                {
+                    try
+                    {
+                        string path = AppDomain.CurrentDomain.BaseDirectory + "\\Logs";
+                        if (!Directory.Exists(path))
+                        {
+                            Directory.CreateDirectory(path);
+                        }
+
+
+                        // FileShare.Read will lock the file for writing while in use by this process
+                        myFileStream = new FileStream(path + "\\log.txt", FileMode.Append, FileAccess.Write, FileShare.None);
+                        break;
+                    }
+                    catch (FileNotFoundException ex)
+                    {
+                        throw ex;
+                    }
+                    catch (Exception)
+                    {
+                        Thread.Sleep(20);
+                    }
+                }
+
+                StreamWriter myStreamWriter = new StreamWriter(myFileStream);
+
+                myStreamWriter.WriteLine(stringToWrite);
+
+                myStreamWriter.Close();
+                myFileStream.Close();
+                myFileStream.Dispose();
+
+            }
+            catch (ThreadAbortException)
+            {
+                // if thread is aborted
+                if (myFileStream != null)
+                {
+                    myFileStream.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (myFileStream != null)
+                {
+                    myFileStream.Dispose();
+                }
             }
         }
     }
