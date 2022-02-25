@@ -1,0 +1,7 @@
+D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Service\Logging Service\bin\Debug\Logging Service.exe.config
+D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Service\Logging Service\bin\Debug\Logging Service.exe
+D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Service\Logging Service\bin\Debug\Logging Service.pdb
+D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Service\Logging Service\obj\Debug\Logging Service.csproj.AssemblyReference.cache
+D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Service\Logging Service\obj\Debug\Logging Service.csproj.CoreCompileInputs.cache
+D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Service\Logging Service\obj\Debug\Logging Service.exe
+D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Service\Logging Service\obj\Debug\Logging Service.pdb
