@@ -1,0 +1,9 @@
+D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Service\Logging Server\bin\Debug\Logging Server.exe.config
+D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Service\Logging Server\bin\Debug\Logging Server.exe
+D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Service\Logging Server\bin\Debug\Logging Server.pdb
+D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Service\Logging Server\obj\Debug\Logging Server.csproj.AssemblyReference.cache
+D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Service\Logging Server\obj\Debug\Logging_Server.ProjectInstaller.resources
+D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Service\Logging Server\obj\Debug\Logging Server.csproj.GenerateResource.cache
+D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Service\Logging Server\obj\Debug\Logging Server.csproj.CoreCompileInputs.cache
+D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Service\Logging Server\obj\Debug\Logging Server.exe
+D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Service\Logging Server\obj\Debug\Logging Server.pdb
