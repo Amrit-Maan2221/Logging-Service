@@ -10,10 +10,6 @@ Reference: https://www.c-sharpcorner.com/article/create-windows-services-in-c-sh
 */
 
 
-
-
-
-
 namespace Logging_Server
 {
     static class Program

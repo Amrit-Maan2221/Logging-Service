@@ -7,3 +7,12 @@ D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Ser
 D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Service\Logging Server\obj\Debug\Logging Server.csproj.CoreCompileInputs.cache
 D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Service\Logging Server\obj\Debug\Logging Server.exe
 D:\Study\SET\Semester 4\Network Application Development\Assignment 3\Logging Service\Logging Server\obj\Debug\Logging Server.pdb
+C:\Users\Dhruvanshi\OneDrive\Desktop\NAD A03\Logging Service\Logging Server\bin\Debug\Logging Server.exe.config
+C:\Users\Dhruvanshi\OneDrive\Desktop\NAD A03\Logging Service\Logging Server\bin\Debug\Logging Server.exe
+C:\Users\Dhruvanshi\OneDrive\Desktop\NAD A03\Logging Service\Logging Server\bin\Debug\Logging Server.pdb
+C:\Users\Dhruvanshi\OneDrive\Desktop\NAD A03\Logging Service\Logging Server\obj\Debug\Logging Server.csproj.AssemblyReference.cache
+C:\Users\Dhruvanshi\OneDrive\Desktop\NAD A03\Logging Service\Logging Server\obj\Debug\Logging_Server.ProjectInstaller.resources
+C:\Users\Dhruvanshi\OneDrive\Desktop\NAD A03\Logging Service\Logging Server\obj\Debug\Logging Server.csproj.GenerateResource.cache
+C:\Users\Dhruvanshi\OneDrive\Desktop\NAD A03\Logging Service\Logging Server\obj\Debug\Logging Server.csproj.CoreCompileInputs.cache
+C:\Users\Dhruvanshi\OneDrive\Desktop\NAD A03\Logging Service\Logging Server\obj\Debug\Logging Server.exe
+C:\Users\Dhruvanshi\OneDrive\Desktop\NAD A03\Logging Service\Logging Server\obj\Debug\Logging Server.pdb

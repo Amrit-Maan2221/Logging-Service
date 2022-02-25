@@ -4,10 +4,11 @@ File Name: Logger.cs
 Project: Logging Server
 Solution: Logging Service
 Date: 25 Feburary, 2022
-Description: 
+Description: This is the server side of the logger project. This is C# based. 
+             This file is resplonsible for server logging. It containg all the functionalities required by the logger.
 
-Reference: Some of the Sockets code from client server connection is taken from previous semester Examples of Windows and Mobile Programming Course of Module 6 
-(Inter-Process Communication)
+Reference: Some of the Sockets code from client server connection is taken from previous semester 
+Examples of Windows and Mobile Programming Course of Module 6 (Inter-Process Communication)
 */
 
 
@@ -17,20 +18,30 @@ using System.Net;
 using System.Net.Sockets;
 using System.IO;
 using System.Threading;
-
+using System.Configuration;
 
 namespace Logging_Server
 {
+    /*
+     class: Logger
+    Description: Responsible for logging and handles logging of Server
+     */
     class Logger
     {
+        /*
+        * FUNCTION     :   StartLogging
+        * DESCRIPTION  :   This function starts the logging process
+        * PARAMETERS   :   void
+        * RETURNS      :   void
+        */
         public static void StartLogging()
         {
             TcpListener loggingServer = null;
             try
             {
                 //later will get these value from App.config...todo
-                Int32 serverPort = Convert.ToInt32("9001");
-                IPAddress serverIPAddress = IPAddress.Parse("127.0.0.1");
+                Int32 serverPort = Convert.ToInt32(ConfigurationManager.AppSettings["server_port"]);
+                IPAddress serverIPAddress = IPAddress.Parse(ConfigurationManager.AppSettings["server_ip_address"]);
                 loggingServer = new TcpListener(serverIPAddress, serverPort);
 
                 //We will start our server
@@ -62,7 +73,12 @@ namespace Logging_Server
 
 
 
-
+        /*
+        * FUNCTION     :   Worker
+        * DESCRIPTION  :   Thread function which executes server-client communication
+        * PARAMETERS   :   object o    :   Contains socket connection
+        * RETURNS      :   void
+        */
         internal static void Worker(Object o)
         {
             TcpClient client = (TcpClient)o;
@@ -74,7 +90,7 @@ namespace Logging_Server
             NetworkStream stream = client.GetStream();
 
             //we can get the ip address too.........
-            //string str = client.Client.RemoteEndPoint.ToString();
+            string str = client.Client.RemoteEndPoint.ToString();
 
             int readData = 0;
 
@@ -94,6 +110,7 @@ namespace Logging_Server
                     GenerateLogFile(logMessage);
                 }
 
+                // Encoding message
                 byte[] responseMessage = System.Text.Encoding.ASCII.GetBytes(response);
                 stream.Write(responseMessage, 0, responseMessage.Length);
             }
@@ -105,14 +122,22 @@ namespace Logging_Server
 
 
 
-
+        /*
+        * FUNCTION     :   ParseClientMessage
+        * DESCRIPTION  :   function to parse Client messages
+        * PARAMETERS   :   string message
+        * RETURNS      :   message
+        */
         static string ParseClientMessage(string message)
         {
+            // Declarations
             int logLevel = 0;
             string logLevelStr = "";
 
+            //Split the message
             var strMessageSeparation = message.Split('#');
 
+            // Check for possible errors
             if (strMessageSeparation.Length != 2 || int.TryParse(strMessageSeparation[0], out logLevel) == false)
             {
                 string errMsg = "Error: Invalid Log Format";
@@ -121,46 +146,61 @@ namespace Logging_Server
 
             string msgInfo = strMessageSeparation[1];
 
-            //Getting the log level in String
+            //Getting the log level in String to parse
             ParseLogLevel(logLevel, ref logLevelStr);
 
+            //Time-stamp parsing
             string timeStamp = DateTime.Now.ToString("MMM dd HH:mm:ss");
             return $"{timeStamp} [{logLevelStr}]: {msgInfo}";
         }
 
 
 
+
+        /*
+        * FUNCTION     :   ParseLogLevel
+        * DESCRIPTION  :   function to parse Client messages
+        * PARAMETERS   :   logLevel, logLevelStr
+        * RETURNS      :   message
+        */
         static void ParseLogLevel(int logLevel, ref string logLevelStr)
         {
-            //"Log Levels:", "0. OFF", "1. FATAL", "2. ERROR", "3. WARN", "4. INFO", "5.DEBUG", "6. TRACE")
+            //"Log Levels: 0. OFF"
             if (logLevel == 0)
             {
                 logLevelStr = "OFF";
             }
-            else if(logLevel == 1)
+            //"Log Levels: 1. FATAL
+            else if (logLevel == 1)
             {
                 logLevelStr = "FATAL";
             }
+            //"Log Levels: 2. ERROR
             else if (logLevel == 2)
             {
                 logLevelStr = "ERROR";
             }
+            //"Log Levels: 3. WARN
             else if (logLevel == 3)
             {
                 logLevelStr = "WARNING";
             }
+            //"Log Levels: 4. INFO
             else if (logLevel == 4)
             {
                 logLevelStr = "INFO";
             }
+            //"Log Levels: 5.DEBUG
             else if (logLevel == 5)
             {
                 logLevelStr = "DEBUG";
             }
+            //"Log Levels: 6. TRACE"
             else if (logLevel == 6)
             {
                 logLevelStr = "TRACE";
             }
+            //"Log Levels: NULL
             else
             {
                 logLevelStr = "";
@@ -174,11 +214,8 @@ namespace Logging_Server
          * Parameters: string stringToWrite --> The String that we want to write into the file
          * Description: This function appends the log messages to the file
          * Returns: void
-         *  References:
-            * TITLE : How to lock a text file for reading and writing using C#
-            * AUTHOR : Dimitrios Kalemis
-            * DATE : June 23, 2013 
-            * AVAILABIILTY : https://dkalemis.wordpress.com/2013/06/23/how-to-lock-a-text-file-for-reading-and-writing-using-csharp/
+         *  References: Dimitrios Kalemis
+         *  https://dkalemis.wordpress.com/2013/06/23/how-to-lock-a-text-file-for-reading-and-writing-using-csharp/
          */
         public static void GenerateLogFile(string stringToWrite)
         {
@@ -197,7 +234,6 @@ namespace Logging_Server
                         {
                             Directory.CreateDirectory(path);
                         }
-
 
                         // FileShare.Read will lock the file for writing while in use by this process
                         myFileStream = new FileStream(path + "\\log.txt", FileMode.Append, FileAccess.Write, FileShare.None);
