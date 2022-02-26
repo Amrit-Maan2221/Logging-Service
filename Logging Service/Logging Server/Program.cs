@@ -10,6 +10,8 @@ Reference: https://www.c-sharpcorner.com/article/create-windows-services-in-c-sh
 */
 
 
+using System.ServiceProcess;
+
 namespace Logging_Server
 {
     static class Program
