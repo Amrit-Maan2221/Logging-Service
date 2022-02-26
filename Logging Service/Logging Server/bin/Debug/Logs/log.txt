@@ -1,17 +1,14 @@
-Logging Started at 25-02-2022 15:13:55
-Logging Started at 25-02-2022 15:36:26
-Feb 25 15:38:52 [FATAL]: Hello from Amrit
-Logging Service Started at25-02-2022 15:44:06
-Logging Service Started at25-02-2022 15:53:46
-Feb 25 15:55:02 [WARNING]: Hello from Amrit
-Logging Service Started at25-02-2022 17:47:54
-Logging Service Started at25-02-2022 17:53:07
-Logging Service Started at25-02-2022 18:36:46
-Logging Service Started at25-02-2022 18:39:37
-Logging Service Started at25-02-2022 18:43:22
-Logging Service Started at25-02-2022 18:45:26
-Logging Service Started at25-02-2022 18:48:25
-Logging Service Started at25-02-2022 18:49:35
-Logging Service Started at25-02-2022 18:51:08
-Feb 25 18:51:54 127.0.0.1 [DEBUG]: rtrr
-Logging Stopped because Server is stopped at 25-02-2022 18:52:28
+-------------------Logging Service Started at 25-02-2022 19:00:20
+-------------------Logging Service Started at 25-02-2022 19:05:04
+-------------------Logging Service Started at 25-02-2022 19:05:41
+----------------Logging Stopped because Server is stopped at 25-02-2022 19:05:41
+-------------------Logging Service Started at 25-02-2022 19:08:38
+----------------Logging Stopped because Server is stopped at 25-02-2022 19:08:38
+-------------------Logging Service Started at 25-02-2022 19:08:45
+----------------Logging Stopped because Server is stopped at 25-02-2022 19:08:45
+-------------------Logging Service Started at 25-02-2022 19:08:55
+-------------------Logging Service Started at 25-02-2022 19:09:20
+-------------------Logging Service Started at 25-02-2022 19:09:47
+----------------Logging Stopped because Server is stopped at 25-02-2022 19:09:50
+-------------------Logging Service Started at 25-02-2022 19:10:00
+-------------------Logging Service Started at 25-02-2022 19:11:55

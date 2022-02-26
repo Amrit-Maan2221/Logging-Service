@@ -39,7 +39,6 @@ namespace Logging_Server
             TcpListener loggingServer = null;
             try
             {
-                //later will get these value from App.config...todo
                 Int32 serverPort = Convert.ToInt32(ConfigurationManager.AppSettings["server_port"]);
                 IPAddress serverIPAddress = IPAddress.Parse(ConfigurationManager.AppSettings["server_ip_address"]);
                 loggingServer = new TcpListener(serverIPAddress, serverPort);
